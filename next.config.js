@@ -2,8 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  output: 'export', // For static export
   images: {
-    unoptimized: true,
+    unoptimized: true, // Required for static export
     remotePatterns: [
       {
         protocol: 'https',
@@ -11,12 +12,6 @@ const nextConfig = {
       },
     ],
   },
-  // For static sites
-  trailingSlash: true,
-  output: 'export',
-  
-  // Use the default 'out' directory
-  distDir: 'out',
-};
+}
 
-module.exports = nextConfig; 
+module.exports = nextConfig 

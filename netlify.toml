@@ -1,22 +1,11 @@
 [build]
-  command = "npm run netlify-build"
+  command = "npm run build"
   publish = "out"
 
-# Build environment variables
-[build.environment]
-  NETLIFY_USE_YARN = "false"
-  NODE_VERSION = "20.11.1"
-  NEXT_TELEMETRY_DISABLED = "1"
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
 
-# Plain redirects for improved compatibility
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  status = 200
-
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
-    Cache-Control = "public, max-age=0, must-revalidate" 
+  status = 200 
