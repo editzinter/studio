@@ -74,3 +74,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - Inspired by Canva and other design tools
 - SVG templates created with love for the restaurant industry
+# studio
