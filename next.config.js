@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    unoptimized: process.env.NODE_ENV !== 'production',
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
@@ -11,7 +11,12 @@ const nextConfig = {
       },
     ],
   },
-  output: process.env.NETLIFY ? undefined : 'standalone',
+  experimental: {
+    serverComponentsExternalPackages: [],
+  },
+  webpack(config) {
+    return config;
+  },
 };
 
 module.exports = nextConfig; 
