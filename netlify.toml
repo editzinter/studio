@@ -8,9 +8,11 @@
   NODE_VERSION = "20.11.1"
   NEXT_TELEMETRY_DISABLED = "1"
 
-# Force trailing slashes
-[[plugins]]
-  package = "netlify-plugin-checklinks"
+# Plain redirects for improved compatibility
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
 
 [[headers]]
   for = "/*"

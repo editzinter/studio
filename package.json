@@ -8,7 +8,7 @@
     "export": "next export",
     "start": "next start",
     "lint": "next lint",
-    "netlify-build": "npm ci && next build && cp -r public/* out/"
+    "netlify-build": "rm -rf out && npm ci && next build && cp -r public/* out/ && cp public/_redirects out/_redirects"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.2",

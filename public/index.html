@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0;url=/gallery" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STUDIO EDIT - Menu Creator</title>
     <style>
@@ -30,12 +31,6 @@
             font-size: 2.5rem;
             margin-bottom: 1rem;
         }
-        h2 {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            color: #666;
-            font-weight: normal;
-        }
         p {
             font-size: 1.1rem;
             line-height: 1.5;
@@ -46,7 +41,6 @@
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 2rem;
         }
         .link {
             display: inline-block;
@@ -56,44 +50,20 @@
             text-decoration: none;
             border-radius: 4px;
             font-weight: 500;
-            transition: background-color 0.2s;
-        }
-        .link:hover {
-            background-color: #4338ca;
-        }
-        .note {
-            margin-top: 2rem;
-            padding: 1rem;
-            background-color: #f0f9ff;
-            border-radius: 4px;
-            color: #0c4a6e;
-            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>STUDIO EDIT</h1>
-        <h2>Create Beautiful Menus for Your Restaurant</h2>
-        
-        <p>Welcome to STUDIO EDIT, the easy-to-use menu creation platform. This is a static fallback page - you should be automatically redirected to the main application.</p>
-        
+        <p>Redirecting you to the menu gallery...</p>
         <div class="links">
-            <a href="/gallery" class="link">Browse Templates</a>
-            <a href="/editor" class="link">Create Menu</a>
-            <a href="/test.html" class="link">Test Page</a>
-        </div>
-        
-        <div class="note">
-            <p>If you're seeing this page instead of the application, try clearing your browser cache or accessing the direct links above.</p>
+            <a href="/gallery" class="link">Go to Gallery</a>
+            <a href="/editor" class="link">Go to Editor</a>
         </div>
     </div>
-    
     <script>
-        // Redirect to homepage after a short delay
-        setTimeout(() => {
-            window.location.href = "/gallery";
-        }, 5000);
+        window.location.href = "/gallery";
     </script>
 </body>
 </html> 
