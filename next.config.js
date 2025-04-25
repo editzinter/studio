@@ -11,9 +11,9 @@ const nextConfig = {
       },
     ],
   },
-  experimental: {
-    serverComponentsExternalPackages: [],
-  },
+  trailingSlash: true,
+  output: process.env.NODE_ENV === 'production' ? 'export' : undefined,
+  assetPrefix: process.env.NETLIFY ? '/' : '',
   webpack(config) {
     return config;
   },
