@@ -11,8 +11,16 @@ const nextConfig = {
       },
     ],
   },
+  // For static sites
   trailingSlash: true,
   output: 'export',
+  
+  // Ensure app directory is handled properly
+  experimental: {
+    appDir: true,
+  },
+  
+  // Use the default 'out' directory
   distDir: 'out',
 };
 

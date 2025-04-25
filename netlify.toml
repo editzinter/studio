@@ -2,24 +2,19 @@
   command = "npm run netlify-build"
   publish = "out"
 
-# We're using static export now, so this plugin isn't needed
-# [[plugins]]
-#  package = "@netlify/plugin-nextjs"
-
 # Build environment variables
 [build.environment]
   NETLIFY_USE_YARN = "false"
   NODE_VERSION = "20.11.1"
   NEXT_TELEMETRY_DISABLED = "1"
 
+# Force trailing slashes
+[[plugins]]
+  package = "netlify-plugin-checklinks"
+
 [[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
-
-# These redirects are not needed with static export
-# [[redirects]]
-#  from = "/*"
-#  to = "/index.html"
-#  status = 200 
+    Cache-Control = "public, max-age=0, must-revalidate" 
