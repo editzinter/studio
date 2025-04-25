@@ -1,9 +1,21 @@
 [build]
-  command = "npm run build"
+  command = "npm run netlify-build"
   publish = ".next"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# Build environment variables
+[build.environment]
+  NETLIFY_USE_YARN = "false"
+  NODE_VERSION = "18.17.0"
+  NEXT_TELEMETRY_DISABLED = "1"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
 
 # These redirects are not needed with the Next.js plugin and can cause issues
 # [[redirects]]
