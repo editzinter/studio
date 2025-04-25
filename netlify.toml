@@ -1,9 +1,10 @@
 [build]
   command = "npm run netlify-build"
-  publish = ".next"
+  publish = "out"
 
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+# We're using static export now, so this plugin isn't needed
+# [[plugins]]
+#  package = "@netlify/plugin-nextjs"
 
 # Build environment variables
 [build.environment]
@@ -17,7 +18,7 @@
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
 
-# These redirects are not needed with the Next.js plugin and can cause issues
+# These redirects are not needed with static export
 # [[redirects]]
 #  from = "/*"
 #  to = "/index.html"

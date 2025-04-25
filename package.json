@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "export": "next export",
     "start": "next start",
     "lint": "next lint",
-    "netlify-build": "npm ci && NETLIFY=true next build"
+    "netlify-build": "npm ci && next build"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.2",
