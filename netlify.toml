@@ -8,7 +8,7 @@
 # Build environment variables
 [build.environment]
   NETLIFY_USE_YARN = "false"
-  NODE_VERSION = "18.17.0"
+  NODE_VERSION = "20.11.1"
   NEXT_TELEMETRY_DISABLED = "1"
 
 [[headers]]
