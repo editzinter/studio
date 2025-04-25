@@ -5,10 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "export": "next export",
     "start": "next start",
-    "lint": "next lint",
-    "netlify-build": "rm -rf out && npm ci && next build && cp -r public/* out/ && cp public/_redirects out/_redirects"
+    "lint": "next lint"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.2",
@@ -69,7 +67,6 @@
     "@types/uuid": "^10.0.0",
     "eslint": "^9",
     "eslint-config-next": "15.3.1",
-    "netlify-plugin-checklinks": "^4.1.1",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.2.8",
     "typescript": "^5"
