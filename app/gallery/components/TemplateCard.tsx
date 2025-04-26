@@ -52,9 +52,11 @@ export default function TemplateCard({ template, imageAvailable = false }: Templ
       <div className="aspect-[3/4] relative overflow-hidden">
         <div className="absolute inset-0 bg-black/5 group-hover:bg-black/20 transition-colors duration-300 z-10" />
         
-        <Link href={`/gallery/${template.id}`} className="absolute inset-0 z-20">
-          <span className="sr-only">View {template.title}</span>
-        </Link>
+        <Link
+          href={`/gallery/${template.id}`}
+          className="absolute inset-0 z-20"
+          aria-label={`View ${template.title}`}
+        />
         
         {imageAvailable ? (
           <Image
@@ -105,19 +107,18 @@ export default function TemplateCard({ template, imageAvailable = false }: Templ
           </div>
         )}
       </div>
-      
       <div className="p-4 flex flex-col flex-grow">
         <h3 className="font-medium text-lg">{template.title}</h3>
         <p className="text-muted-foreground text-sm mt-1">{template.description}</p>
         
         <div className="mt-4 flex justify-between items-center mt-auto">
           <span className="text-xs px-2 py-1 bg-muted rounded-full">{template.category}</span>
-          <Button asChild variant="ghost" size="sm" className="gap-1 relative z-10">
-            <Link href={`/gallery/${template.id}`}>
+          <Link href={`/gallery/${template.id}`}>
+            <Button variant="ghost" size="sm" className="gap-1 relative z-10">
               View
               <ArrowRight className="h-3 w-3" />
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

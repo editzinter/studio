@@ -2,6 +2,8 @@ import Hero from './components/ui/Hero';
 import Features from './components/ui/Features';
 import CTA from './components/ui/CTA';
 import { Separator } from '@/components/ui/separator';
+import { Marquee } from '@/components/magicui/marquee';
+import { ArrowRightIcon } from 'lucide-react'; 
 
 export default function Home() {
   return (
@@ -27,6 +29,61 @@ export default function Home() {
         </div>
         
         <Hero />
+      </div>
+      
+      {/* Marquee section with logos */}
+      <div className="py-16 border-y border-border/20 bg-gradient-to-r from-background via-muted/20 to-background">
+        <div className="container">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold tracking-tight">Trusted by restaurants worldwide</h2>
+            <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">Join thousands of restaurants creating beautiful menus with STUDIO EDIT</p>
+          </div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4">
+          <Marquee className="py-6" pauseOnHover repeat={6}>
+            <div className="flex items-center mx-10">
+              <div className="flex items-center justify-center h-12 w-auto px-4 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition duration-300">
+                <span className="font-bold text-xl flex items-center group">
+                  Bistro Elite 
+                  <ArrowRightIcon className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </span>
+              </div>
+            </div>
+            <div className="flex items-center mx-10">
+              <div className="flex items-center justify-center h-12 w-auto px-4 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition duration-300">
+                <span className="font-bold text-xl flex items-center group">
+                  Gourmet Garden 
+                  <ArrowRightIcon className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </span>
+              </div>
+            </div>
+            <div className="flex items-center mx-10">
+              <div className="flex items-center justify-center h-12 w-auto px-4 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition duration-300">
+                <span className="font-bold text-xl flex items-center group">
+                  Flavors & Co 
+                  <ArrowRightIcon className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </span>
+              </div>
+            </div>
+            <div className="flex items-center mx-10">
+              <div className="flex items-center justify-center h-12 w-auto px-4 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition duration-300">
+                <span className="font-bold text-xl flex items-center group">
+                  Urban Plate 
+                  <ArrowRightIcon className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </span>
+              </div>
+            </div>
+            <div className="flex items-center mx-10">
+              <div className="flex items-center justify-center h-12 w-auto px-4 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition duration-300">
+                <span className="font-bold text-xl flex items-center group">
+                  Seaside Bites 
+                  <ArrowRightIcon className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </span>
+              </div>
+            </div>
+          </Marquee>
+        </div>
       </div>
       
       {/* Elegant divider with gradient */}

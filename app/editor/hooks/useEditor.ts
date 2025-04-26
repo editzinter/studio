@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { EditorState, MenuDesign, EditorObject, TextObject, ImageObject, ShapeObject, CanvasSize, BackgroundObject } from '../types';
+import { getTemplateDesign } from '../services/templates';
 
 export default function useEditor(initialTemplate?: string) {
   // Default canvas size
@@ -47,6 +48,32 @@ export default function useEditor(initialTemplate?: string) {
 
   // Track objects separately for easier manipulation
   const [objects, setObjects] = useState<(TextObject | ImageObject | ShapeObject | BackgroundObject)[]>([]);
+
+  // Modified useEffect for loading templates
+  useEffect(() => {
+    if (initialTemplate) {
+      const templateDesign = getTemplateDesign(initialTemplate);
+      if (templateDesign && templateDesign.objects) {
+        // Make sure text objects have proper font properties
+        const enhancedObjects = templateDesign.objects.map(obj => {
+          if (obj.type === 'text') {
+            const textObj = obj as TextObject;
+            // Ensure consistent font styling
+            return {
+              ...textObj,
+              fontFamily: textObj.fontFamily || 'Playfair Display, serif',
+              fontSize: textObj.fontSize || 24,
+              lineHeight: textObj.lineHeight || 1.2
+            };
+          }
+          return obj;
+        });
+        
+        setObjects(enhancedObjects);
+        console.log("Template loaded with", enhancedObjects.length, "objects");
+      }
+    }
+  }, [initialTemplate]);
 
   // Helper to create a new design state for history
   const createDesignSnapshot = useCallback((): MenuDesign => {
@@ -203,6 +230,40 @@ export default function useEditor(initialTemplate?: string) {
     }));
   }, [recordHistory]);
 
+  // Duplicate objects
+  const duplicateObject = useCallback((id: string) => {
+    recordHistory();
+    const objToDuplicate = objects.find(obj => obj.id === id);
+    
+    if (!objToDuplicate) return;
+    
+    const offset = 20; // Offset for the duplicated object position
+    
+    // Create a new object based on the type
+    if (objToDuplicate.type === 'text') {
+      const textObj = objToDuplicate as TextObject;
+      addTextObject(
+        textObj.text,
+        textObj.x + offset,
+        textObj.y + offset
+      );
+    } else if (objToDuplicate.type === 'shape') {
+      const shapeObj = objToDuplicate as ShapeObject;
+      addShapeObject(
+        shapeObj.shapeType,
+        shapeObj.x + offset,
+        shapeObj.y + offset
+      );
+    } else if (objToDuplicate.type === 'image') {
+      const imageObj = objToDuplicate as ImageObject;
+      addImageObject(
+        imageObj.src,
+        imageObj.x + offset,
+        imageObj.y + offset
+      );
+    }
+  }, [objects, recordHistory, addTextObject, addShapeObject, addImageObject]);
+
   // History actions
   const undo = useCallback(() => {
     if (editorState.history.past.length === 0) return;
@@ -260,6 +321,7 @@ export default function useEditor(initialTemplate?: string) {
     addShapeObject,
     updateObject,
     deleteObject,
+    duplicateObject,
     undo,
     redo,
     setZoom

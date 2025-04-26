@@ -6,11 +6,14 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 import { Text, Image, Square, Circle, Type, Undo, Redo, Save, Download, Layout, Layers, Share2, Settings, Plus } from 'lucide-react';
-import { EditorState, MenuDesign } from '../types';
+import { TextObject, ImageObject, ShapeObject, EditorObject } from '../types';
 import Canvas from './canvas/Canvas';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import useEditor from '../hooks/useEditor';
 import { getTemplateDesign } from '../services/templates';
+import ImagePickerDialog from './ImagePickerDialog';
+import ImageShapeDialog from './ImageShapeDialog';
+import { ImageShapeOptions } from './ImageShapePicker';
 
 interface DesktopEditorProps {
   initialTemplate?: string;
@@ -31,6 +34,9 @@ export default function DesktopEditor({ initialTemplate }: DesktopEditorProps) {
     redo,
     setZoom
   } = useEditor(initialTemplate);
+
+  const [selectedImage, setSelectedImage] = useState('');
+  const [isShapeDialogOpen, setIsShapeDialogOpen] = useState(false);
 
   // Load template data if provided
   useEffect(() => {
@@ -57,8 +63,35 @@ export default function DesktopEditor({ initialTemplate }: DesktopEditorProps) {
   };
 
   const handleAddImage = () => {
-    // For demo purposes, use a placeholder image
-    addImageObject('https://via.placeholder.com/300x200');
+    // No longer adding a placeholder image directly
+    // Instead, we'll trigger the image picker
+  };
+
+  // New function to handle image selection from the picker
+  const handleImageSelected = (imageUrl: string) => {
+    setSelectedImage(imageUrl);
+    setIsShapeDialogOpen(true);
+  };
+
+  // Function to handle the image shape options
+  const handleApplyImageShape = (options: ImageShapeOptions) => {
+    // Add the image with customized shape properties
+    const newImage: Partial<ImageObject> = {
+      src: options.imageUrl,
+      width: options.width,
+      height: options.height,
+      objectFit: options.objectFit,
+      // Additional properties based on shape
+      shapeType: options.shape !== 'original' ? options.shape : undefined
+    };
+    
+    addImageObject(options.imageUrl, 100, 100);
+    
+    // If the image has just been added, get the latest object and update it
+    const latestObjectId = objects.length > 0 ? objects[objects.length - 1].id : null;
+    if (latestObjectId) {
+      updateObject(latestObjectId, newImage);
+    }
   };
 
   const handleAddShape = (shapeType: 'rectangle' | 'circle' | 'line' | 'path') => {
@@ -84,7 +117,7 @@ export default function DesktopEditor({ initialTemplate }: DesktopEditorProps) {
   };
 
   return (
-    <div className="h-screen flex flex-col">
+    <div className="h-full flex flex-col">
       {/* Top toolbar */}
       <div className="border-b bg-background">
         <div className="flex items-center justify-between px-4 h-14">
@@ -163,10 +196,10 @@ export default function DesktopEditor({ initialTemplate }: DesktopEditorProps) {
                 
                 <div>
                   <h3 className="text-sm font-medium mb-2">Images</h3>
-                  <Button variant="outline" className="w-full justify-start" onClick={handleAddImage}>
-                    <Image className="h-4 w-4 mr-2" />
-                    Upload Image
-                  </Button>
+                  <ImagePickerDialog 
+                    onSelectImage={handleImageSelected} 
+                    title="Add Image"
+                  />
                 </div>
               </TabsContent>
               
@@ -208,6 +241,7 @@ export default function DesktopEditor({ initialTemplate }: DesktopEditorProps) {
                     width={800}
                     height={1200}
                     onSelectObject={selectObject}
+                    onObjectUpdate={updateObject}
                   />
                 </div>
               </div>
@@ -331,6 +365,16 @@ export default function DesktopEditor({ initialTemplate }: DesktopEditorProps) {
           </ResizablePanel>
         </ResizablePanelGroup>
       </div>
+
+      {/* Image shape dialog */}
+      {isShapeDialogOpen && (
+        <ImageShapeDialog
+          imageUrl={selectedImage}
+          isOpen={isShapeDialogOpen}
+          onClose={() => setIsShapeDialogOpen(false)}
+          onApply={handleApplyImageShape}
+        />
+      )}
     </div>
   );
 } 

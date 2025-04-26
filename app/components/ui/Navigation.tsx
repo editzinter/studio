@@ -17,9 +17,9 @@ import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
+  NavigationMenuLink,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Sparkles, Menu, X, FilePenLine, Book, Home, Images, ChevronRight } from 'lucide-react';
@@ -53,8 +53,10 @@ export default function Navigation() {
       <nav className="container mx-auto flex items-center justify-between py-3 px-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 font-semibold">
-          <Sparkles className="h-5 w-5 text-primary" />
-          <span className="text-lg">STUDIO EDIT</span>
+          <span className="flex items-center gap-2">
+            <Sparkles className="h-5 w-5 text-primary" />
+            <span className="text-lg">STUDIO EDIT</span>
+          </span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -63,29 +65,30 @@ export default function Navigation() {
             <NavigationMenuList>
               {navLinks.map((link) => (
                 <NavigationMenuItem key={link.href}>
-                  <Link href={link.href} legacyBehavior passHref>
-                    <NavigationMenuLink 
-                      className={cn(
-                        navigationMenuTriggerStyle(),
-                        "px-4 gap-1.5",
-                        isActive(link.href) && "bg-primary/10 text-primary"
-                      )}
-                    >
+                  <NavigationMenuLink 
+                    href={link.href}
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      "px-4 gap-1.5",
+                      isActive(link.href) && "bg-primary/10 text-primary"
+                    )}
+                  >
+                    <span className="flex items-center">
                       {link.icon}
                       {link.label}
-                    </NavigationMenuLink>
-                  </Link>
+                    </span>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
               ))}
             </NavigationMenuList>
           </NavigationMenu>
           
-          <Button asChild className="ml-2 gap-1.5 group">
-            <Link href="/editor">
+          <Link href="/editor" className="ml-2">
+            <Button className="gap-1.5 group">
               <FilePenLine className="h-4 w-4 transition-transform group-hover:scale-110" />
               Create a Menu
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </div>
 
         {/* Mobile Navigation */}
@@ -110,7 +113,7 @@ export default function Navigation() {
               <div className="flex flex-col gap-4">
                 {navLinks.map((link) => (
                   <SheetClose asChild key={link.href}>
-                    <Link 
+                    <Link
                       href={link.href}
                       className={cn(
                         "flex items-center py-2 px-3 rounded-md transition-colors",
@@ -119,20 +122,22 @@ export default function Navigation() {
                           : "hover:bg-muted"
                       )}
                     >
-                      {link.icon}
-                      <span>{link.label}</span>
-                      {isActive(link.href) && <ChevronRight className="ml-auto h-4 w-4" />}
+                      <span className="flex items-center">
+                        {link.icon}
+                        <span>{link.label}</span>
+                        {isActive(link.href) && <ChevronRight className="ml-auto h-4 w-4" />}
+                      </span>
                     </Link>
                   </SheetClose>
                 ))}
                 <div className="mt-2 pt-2 border-t">
                   <SheetClose asChild>
-                    <Button asChild className="w-full gap-2 mt-2">
-                      <Link href="/editor">
+                    <Link href="/editor" className="w-full block">
+                      <Button className="w-full gap-2 mt-2">
                         <FilePenLine className="h-4 w-4" />
                         Create a Menu
-                      </Link>
-                    </Button>
+                      </Button>
+                    </Link>
                   </SheetClose>
                 </div>
               </div>

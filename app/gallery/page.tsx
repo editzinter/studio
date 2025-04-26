@@ -81,10 +81,10 @@ const templates = [
   },
   {
     id: "template-3",
-    title: "Street Food",
-    description: "Bold and vibrant menu for food trucks and casual eateries",
-    category: "Casual",
-    imageUrl: "/templates/street-food.jpg"
+    title: "Sweet Delights",
+    description: "Elegant dessert menu with watercolor aesthetic",
+    category: "Desserts",
+    imageUrl: "/templates/dessert-menu.jpg"
   },
   {
     id: "template-4",
@@ -109,7 +109,7 @@ const templates = [
   },
 ];
 
-const categories = ["All", "Fine Dining", "Cafe", "Casual", "Italian", "Asian", "Bar"];
+const categories = ["All", "Fine Dining", "Cafe", "Casual", "Desserts", "Italian", "Asian", "Bar"];
 
 export default function GalleryPage() {
   const [searchQuery, setSearchQuery] = useState("");

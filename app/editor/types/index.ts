@@ -33,6 +33,7 @@ export interface ImageObject extends EditorObject {
   cropWidth?: number;
   cropHeight?: number;
   objectFit: 'cover' | 'contain' | 'fill';
+  shapeType?: 'rectangle' | 'circle' | 'triangle' | 'hexagon' | 'star' | 'heart';
 }
 
 export interface ShapeObject extends EditorObject {

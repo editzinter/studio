@@ -193,9 +193,9 @@ export default function TemplateDetailsPage({ params }: { params: { id: string }
           <p className="text-muted-foreground mb-6">
             The template you're looking for doesn't exist or has been removed.
           </p>
-          <Button asChild>
-            <Link href="/gallery">Back to Gallery</Link>
-          </Button>
+          <Link href="/gallery">
+            <Button>Back to Gallery</Button>
+          </Link>
         </div>
       </div>
     );
@@ -209,17 +209,16 @@ export default function TemplateDetailsPage({ params }: { params: { id: string }
       <div className="max-w-7xl mx-auto">
         {/* Back button and template info */}
         <div className="mb-8">
-          <Button
-            variant="ghost"
-            size="sm"
-            asChild
-            className="mb-4 -ml-2 text-muted-foreground hover:text-foreground"
-          >
-            <Link href="/gallery">
+          <Link href="/gallery" className="inline-block">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="mb-4 -ml-2 text-muted-foreground hover:text-foreground"
+            >
               <ChevronLeft className="h-4 w-4 mr-1" />
               Back to Gallery
-            </Link>
-          </Button>
+            </Button>
+          </Link>
           
           <h1 className="text-3xl font-bold">{template.title}</h1>
           <p className="text-lg text-muted-foreground mt-2">{template.description}</p>
@@ -272,12 +271,12 @@ export default function TemplateDetailsPage({ params }: { params: { id: string }
           {/* Actions sidebar */}
           <div className="w-full md:w-1/3 space-y-6">
             <div className="space-y-4">
-              <Button asChild className="w-full" size="lg">
-                <Link href={`/editor?template=${template.id}`}>
+              <Link href={`/editor?template=${template.id}`} className="block w-full">
+                <Button className="w-full" size="lg">
                   <Edit className="h-4 w-4 mr-2" />
                   Customize This Template
-                </Link>
-              </Button>
+                </Button>
+              </Link>
               
               <div className="flex gap-4">
                 <Button variant="outline" className="flex-1">

@@ -47,6 +47,9 @@ function EditorContent() {
     return <EditorLoading />;
   }
   
+  // Log the template parameter to ensure it's being correctly passed
+  console.log("Template ID:", templateId);
+
   return (
     <>
       {isMobile ? (
@@ -60,7 +63,7 @@ function EditorContent() {
 
 export default function EditorPage() {
   return (
-    <main>
+    <main className="h-full flex-1">
       <Suspense fallback={<EditorLoading />}>
         <EditorContent />
       </Suspense>

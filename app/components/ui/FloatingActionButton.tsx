@@ -19,20 +19,19 @@ export function FloatingActionButton({
   children,
 }: FloatingActionButtonProps) {
   return (
-    <Button
-      asChild
-      className={cn(
-        "fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg",
-        "flex items-center justify-center",
-        "bg-primary hover:bg-primary/90",
-        "transition-all duration-200 ease-in-out",
-        "md:h-16 md:w-16 md:bottom-8 md:right-8",
-        className
-      )}
-    >
-      <Link href={href}>
+    <Link href={href}>
+      <Button
+        className={cn(
+          "fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg",
+          "flex items-center justify-center",
+          "bg-primary hover:bg-primary/90",
+          "transition-all duration-200 ease-in-out",
+          "md:h-16 md:w-16 md:bottom-8 md:right-8",
+          className
+        )}
+      >
         {children || icon}
-      </Link>
-    </Button>
-  )
+      </Button>
+    </Link>
+  );
 } 

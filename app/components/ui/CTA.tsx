@@ -125,18 +125,18 @@ export default function CTA() {
               className="absolute -right-4 -bottom-4 w-32 h-32 bg-primary/10 rounded-full blur-2xl hidden lg:block" 
               aria-hidden="true"
             />
-            <Button asChild size="lg" className="px-8 gap-2 group shadow-md">
-              <Link href="/editor">
+            <Link href="/editor" className="contents">
+              <Button size="lg" className="px-8 gap-2 group shadow-md">
                 Create Your Menu
                 <ArrowRight className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="gap-2 group">
-              <Link href="/gallery">
+              </Button>
+            </Link>
+            <Link href="/gallery" className="contents">
+              <Button variant="outline" size="lg" className="gap-2 group">
                 <Sparkles className="h-4 w-4 mr-1 transition-transform group-hover:rotate-12" />
                 Explore Templates
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
